@@ -42,7 +42,7 @@ This screenshot shows the results of running:
 - Shows **coverage percentage** of your Go code (e.g., 77.4%).  
 - Ensures that your server functions correctly and all endpoints behave as expected.  
 
-![Test Coverage](screenshots/test_coverage.png)
+![Test Coverage](JKWS Server/jwks/test coverage.png)
 
 ## Installation / Setup
 
