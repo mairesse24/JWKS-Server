@@ -23,3 +23,38 @@ This project implements a **JWKS (JSON Web Key Set) server** that:
 ```bash
 https://github.com/mairesse24/JWKS-Server/blob/main/README.md
 cd jwks-server
+
+
+## Screenshots
+### 1. JWKS Endpoint
+This screenshot shows the JSON Web Key Set (JWKS) returned by the server at the endpoint:
+
+- Only **unexpired keys** are included.  
+- Each key has a **unique `kid`** that clients use to verify JWTs.  
+- The JSON output includes key parameters like `kty` (key type), `alg` (algorithm), `n` (modulus), and `e` (exponent).  
+
+![JWKS Endpoint](screenshots/jwks_endpoint.png)
+
+
+### 2. Auth Endpoint
+This screenshot shows the JWT returned by the `/auth` endpoint:
+
+- Demonstrates that the server can issue a signed JWT.  
+- The JWT includes a **header with `kid`**, so the client knows which key from the JWKS to use for verification.  
+- Using the `?expired=true` query parameter issues a JWT signed with an **expired key**, useful for testing key rotation behavior.  
+
+![Auth Endpoint](screenshots/auth_endpoint.png)
+
+
+### 3. Test Coverage
+This screenshot shows the results of running:
+- Confirms that **all tests pass**.  
+- Shows **coverage percentage** of your Go code (e.g., 77.4%).  
+- Ensures that your server functions correctly and all endpoints behave as expected.  
+
+![Test Coverage](screenshots/test_coverage.png)
+
+
+
+
+
