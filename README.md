@@ -15,16 +15,6 @@ This project implements a **JWKS (JSON Web Key Set) server** that:
 - Gin Web Framework
 - Windows, macOS, or Linux terminal (PowerShell or bash)
 
-
-## Installation / Setup
-
-1. Clone the repository:
-
-```bash
-https://github.com/mairesse24/JWKS-Server/blob/main/README.md
-cd jwks-server
-
-
 ## Screenshots
 ### 1. JWKS Endpoint
 This screenshot shows the JSON Web Key Set (JWKS) returned by the server at the endpoint:
@@ -53,6 +43,17 @@ This screenshot shows the results of running:
 - Ensures that your server functions correctly and all endpoints behave as expected.  
 
 ![Test Coverage](screenshots/test_coverage.png)
+
+## Installation / Setup
+
+1. Clone the repository:
+
+```bash
+https://github.com/mairesse24/JWKS-Server/blob/main/README.md
+cd jwks-server
+
+
+
 
 
 
