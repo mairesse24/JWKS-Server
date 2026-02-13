@@ -9,21 +9,17 @@ This project implements a **JWKS (JSON Web Key Set) server** that:
   - Supports issuing expired JWTs via the `?expired=true` query parameter
 - Demonstrates key expiry and proper `kid` usage in JWTs
 
-This project is for educational purposes. In a production system, you would implement proper authentication and follow security best practices.
-
----
 
 ## Requirements
 - Go (1.21+ recommended)
 - Gin Web Framework
 - Windows, macOS, or Linux terminal (PowerShell or bash)
 
----
 
 ## Installation / Setup
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/jwks-server.git
+https://github.com/mairesse24/JWKS-Server/blob/main/README.md
 cd jwks-server
