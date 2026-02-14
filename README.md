@@ -30,6 +30,9 @@ This project:
 ```bash
 python -m venv venv
 venv\Scripts\activate
+---
+```
+
 Install dependencies:
 
 pip install fastapi uvicorn cryptography pyjwt pytest pytest-cov
@@ -98,6 +101,9 @@ Expired keys are intentionally supported for testing.
 Active keys are returned in the JWKS endpoint.
 
 All keys are stored in memory (no database).
+
+
+
 
 ------
 
