@@ -34,12 +34,10 @@ cd jwks
 ```bash
 python -m venv venv
 venv\Scripts\activate
-
-pip install -r requirements.txt
 ```
 
 ### Install dependencies:
-pip install fastapi uvicorn cryptography pyjwt pytest pytest-cov
+pip install -r requirements.txt
 
 ### Running the Server
 Start the server:
