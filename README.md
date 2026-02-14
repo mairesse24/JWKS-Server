@@ -22,11 +22,87 @@ This project:
 
 ---
 
+## 🛠 Installation
 
+1. Clone or download the project.
 
+```bash
+python -m venv venv
+venv\Scripts\activate
 
+---
+Install dependencies:
+'''bash
+pip install fastapi uvicorn cryptography pyjwt pytest pytest-cov
 
+----
 
+## Running the Server
+
+'''bash
+python -m uvicorn main:app --reload --port 8080
+
+Server will run at:
+
+http://127.0.0.1:8080
+
+---
+Endpoints
+GET /jwks.json
+
+Returns active public keys in JWKS format.
+
+'''bash
+curl http://127.0.0.1:8080/jwks.json
+ include screenshot
+---
+POST /auth
+
+Generates a signed JWT.
+screenshot
+
+POST /auth?expired=true
+Generates a JWT signed with an expired key (for testing purposes)
+
+🧪 Running Tests
+
+Run tests:
+
+python -m pytest
+
+python -m pytest --cov=.  // Run tests with coverage
+python -m pytest --cov=. --cov-report=html  // Generate HTML coverage report:
+
+screenshot
+
+HTML report will be generated in:
+
+htmlcov/index.html
+
+##📊 Coverage
+Current coverage: ~86%
+
+## ⚙️ Technologies Used
+
+FastAPI
+
+Uvicorn
+
+PyJWT
+
+Cryptography
+
+Pytest
+
+Pytest-Cov
+
+📌 Notes
+
+Expired keys are intentionally supported for testing.
+
+Active keys are returned in the JWKS endpoint.
+
+The project uses in-memory key storage.
 
 
 ------
