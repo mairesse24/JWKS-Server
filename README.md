@@ -65,23 +65,24 @@ Generates a JWT signed with an expired key (for testing).
 
 ## Running Tests
 Run all tests:
-
+```bash
 python -m pytest
-Run tests with coverage:
+//Run tests with coverage:
 
 python -m pytest --cov=.
-Generate HTML coverage report:
+//Generate HTML coverage report
 
 python -m pytest --cov=. --cov-report=html
-HTML report will be in:
+//HTML report will be in
 
 htmlcov/index.html
+```
 (Include screenshot of coverage report if needed.)
 
-📊 Coverage
+## Coverage
 Current coverage: ~86%
 
-⚙️ Technologies Used
+## Technologies Used
 -  FastAPI
 -  Uvicorn
 -  PyJWT
