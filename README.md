@@ -24,7 +24,6 @@ This project:
 
 ## 🛠 Installation
 
-1. Clone or download the project.  
 1. Clone the repository:
 
 ```bash
