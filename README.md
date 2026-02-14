@@ -2,88 +2,84 @@
 
 A simple JSON Web Key Set (JWKS) server built with FastAPI.
 
-This project:
-- Generates RSA key pairs
-- Serves public keys via a JWKS endpoint
-- Issues signed JWTs
-- Supports expired key testing
-- Includes automated tests with coverage
+This project:  
+- Generates RSA key pairs  
+- Serves public keys via a JWKS endpoint  
+- Issues signed JWTs  
+- Supports expired key testing  
+- Includes automated tests with coverage  
 
 ---
 
 ## 🚀 Features
 
-- 🔐 RSA key generation
-- 🔁 Automatic key rotation (background thread)
-- 📦 JWKS endpoint (`/jwks.json`)
-- 🪪 JWT issuing endpoint (`/auth`)
-- 🧪 Pytest test suite
-- 📊 Code coverage reporting
+- 🔐 RSA key generation  
+- 🔁 Automatic key rotation (background thread)  
+- 📦 JWKS endpoint (`/jwks.json`)  
+- 🪪 JWT issuing endpoint (`/auth`)  
+- 🧪 Pytest test suite  
+- 📊 Code coverage reporting  
 
 ---
 
 ## 🛠 Installation
 
-1. Clone or download the project.
+1. Clone or download the project.  
+2. Create a virtual environment:
 
 ```bash
 python -m venv venv
 venv\Scripts\activate
-
----
 Install dependencies:
-'''bash
+
 pip install fastapi uvicorn cryptography pyjwt pytest pytest-cov
+▶️ Running the Server
+Start the server:
 
-----
-
-## Running the Server
-
-'''bash
 python -m uvicorn main:app --reload --port 8080
-
 Server will run at:
-
 http://127.0.0.1:8080
 
----
-Endpoints
+🔑 Endpoints
 GET /jwks.json
-
 Returns active public keys in JWKS format.
 
-'''bash
 curl http://127.0.0.1:8080/jwks.json
- include screenshot
----
-POST /auth
+(You can include a screenshot of the response here.)
 
+POST /auth
 Generates a signed JWT.
-screenshot
+
+Request body example:
+
+{
+  "sub": "testuser"
+}
+curl -X POST -H "Content-Type: application/json" -d '{"sub":"testuser"}' http://127.0.0.1:8080/auth
+(Include screenshot of token output.)
 
 POST /auth?expired=true
-Generates a JWT signed with an expired key (for testing purposes)
+Generates a JWT signed with an expired key (for testing).
 
 🧪 Running Tests
-
-Run tests:
+Run all tests:
 
 python -m pytest
+Run tests with coverage:
 
-python -m pytest --cov=.  // Run tests with coverage
-python -m pytest --cov=. --cov-report=html  // Generate HTML coverage report:
+python -m pytest --cov=.
+Generate HTML coverage report:
 
-screenshot
-
-HTML report will be generated in:
+python -m pytest --cov=. --cov-report=html
+HTML report will be in:
 
 htmlcov/index.html
+(Include screenshot of coverage report if needed.)
 
-##📊 Coverage
+📊 Coverage
 Current coverage: ~86%
 
-## ⚙️ Technologies Used
-
+⚙️ Technologies Used
 FastAPI
 
 Uvicorn
@@ -97,13 +93,11 @@ Pytest
 Pytest-Cov
 
 📌 Notes
-
 Expired keys are intentionally supported for testing.
 
 Active keys are returned in the JWKS endpoint.
 
-The project uses in-memory key storage.
-
+All keys are stored in memory (no database).
 
 ------
 
