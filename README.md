@@ -28,7 +28,7 @@ This project:
 
 ```bash
 git clone https://github.com/mairesse24/JWKS-Server
-cd jwks-server
+cd jwks
 ```
 2. Create a virtual environment:
 ```bash
