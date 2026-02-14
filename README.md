@@ -25,18 +25,14 @@ This project:
 ## 🛠 Installation
 
 1. Clone or download the project.  
-2. Create a virtual environment:
-
-```bash
-python -m venv venv
-venv\Scripts\activate
-```
 1. Clone the repository:
 
 ```bash
-https://github.com/mairesse24/JWKS-Server
+git clone https://github.com/mairesse24/JWKS-Server
 cd jwks-server
-
+```
+2. Create a virtual environment:
+```bash
 or python -m venv venv
 venv\Scripts\activate
 ```
@@ -60,9 +56,10 @@ Returns active public keys in JWKS format.
 ```bash
 curl http://127.0.0.1:8080/jwks.json
 ```
-- Only **unexpired keys** are included.  
-- Each key has a **unique `kid`** that clients use to verify JWTs.  
-- The JSON output includes key parameters like `kty` (key type), `alg` (algorithm), `n` (modulus), and `e` (exponent).
+
+- Only unexpired keys are included.
+- Each key has a unique kid for verification.
+- JSON output includes key parameters: kty (key type), alg (algorithm), n (modulus), and e (exponent).
   
 <p align="center">
   <img src="https://i.postimg.cc/y8wZn9ds/jkws-endpoint.png" width="500"/>
@@ -74,12 +71,12 @@ Generates a signed JWT.
 curl -X POST -H "Content-Type: application/json" -d '{"sub":"testuser"}' http://127.0.0.1:8080/auth
 ```
 
-- Demonstrates that the server can issue a signed JWT.  
-- The JWT includes a **header with `kid`**, so the client knows which key from the JWKS to use for verification.  
-- Using the `?expired=true` query parameter issues a JWT signed with an **expired key**, useful for testing key rotation behavior.
-
+- Demonstrates issuing a signed JWT.
+- JWT includes a header with kid for key verification.
+- Add ?expired=true to issue a JWT signed with an expired key for testing rotation.
+  
 <p align="center">
-  <img src="https://i.postimg.cc/8zq6wW5V/auth-endpoint.png" width="500"/>
+  <img src="https://i.postimg.cc/8zq6wW5V/auth-endpoint.png" width="600"/>
 </p>
 
 
@@ -87,24 +84,26 @@ curl -X POST -H "Content-Type: application/json" -d '{"sub":"testuser"}' http://
 Run all tests:
 ```bash
 python -m pytest
-//Run tests with coverage:
-
+```
+Run tests with coverage:
+```bash
 python -m pytest --cov=.
-//Generate HTML coverage report
-
+```
+Generate HTML coverage report:
+```bash
 python -m pytest --cov=. --cov-report=html
-//HTML report will be in
-
+```
+The HTML report will be generated in:
+```bash
 htmlcov/index.html
 ```
 
 ## Coverage
-Confirms that **all tests pass**.
-Shows **coverage percentage** of **86%**  
-- Ensures that your server functions correctly and all endpoints behave as expected.
-
+- Confirms that all tests pass.
+- Shows coverage percentage **(~86%)**.
+- Ensures all endpoints function as expected.
 <p align="center">
-  <img src="https://i.postimg.cc/RZjHGfFv/coverage.png" width="500"/>
+  <img src="https://i.postimg.cc/RZjHGfFv/coverage.png" width="600"/>
 </p>
 
 ## Technologies Used
