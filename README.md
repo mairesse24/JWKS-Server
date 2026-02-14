@@ -9,7 +9,6 @@ This project:
 - Supports expired key testing  
 - Includes automated tests with coverage  
 
----
 
 ## Features
 
@@ -20,7 +19,6 @@ This project:
 - Pytest test suite  
 - Code coverage reporting  
 
----
 
 ## Installation
 
