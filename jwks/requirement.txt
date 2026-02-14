@@ -1,0 +1,8 @@
+fastapi==0.129.0
+uvicorn==0.22.0
+cryptography==46.0.5
+pyjwt==2.8.0
+pytest==9.0.2
+pytest-cov==7.0.0
+python-jose==3.5.0
+rsa==4.9.1
