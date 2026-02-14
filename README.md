@@ -13,12 +13,12 @@ This project:
 
 ## 🚀 Features
 
-- 🔐 RSA key generation  
-- 🔁 Automatic key rotation (background thread)  
-- 📦 JWKS endpoint (`/jwks.json`)  
-- 🪪 JWT issuing endpoint (`/auth`)  
-- 🧪 Pytest test suite  
-- 📊 Code coverage reporting  
+- RSA key generation  
+- Automatic key rotation (background thread)  
+- JWKS endpoint (`/jwks.json`)  
+- JWT issuing endpoint (`/auth`)  
+- Pytest test suite  
+- Code coverage reporting  
 
 ---
 
@@ -32,7 +32,7 @@ cd jwks-server
 ```
 2. Create a virtual environment:
 ```bash
-or python -m venv venv
+python -m venv venv
 venv\Scripts\activate
 ```
 
@@ -61,7 +61,7 @@ curl http://127.0.0.1:8080/jwks.json
 - JSON output includes key parameters: kty (key type), alg (algorithm), n (modulus), and e (exponent).
   
 <p align="center">
-  <img src="https://i.postimg.cc/y8wZn9ds/jkws-endpoint.png" width="500"/>
+  <img src="https://i.postimg.cc/y8wZn9ds/jkws-endpoint.png" width="500; max-width: 900px;"/>
 </p>
 
 ### POST /auth
@@ -75,7 +75,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"sub":"testuser"}' http://
 - Add ?expired=true to issue a JWT signed with an expired key for testing rotation.
   
 <p align="center">
-  <img src="https://i.postimg.cc/8zq6wW5V/auth-endpoint.png" width="600"/>
+  <img src="https://i.postimg.cc/8zq6wW5V/auth-endpoint.png" width="600; max-width: 900px;"/>
 </p>
 
 
@@ -102,7 +102,7 @@ htmlcov/index.html
 - Shows coverage percentage **(~86%)**.
 - Ensures all endpoints function as expected.
 <p align="center">
-  <img src="https://i.postimg.cc/RZjHGfFv/coverage.png" width="600"/>
+  <img src="https://i.postimg.cc/RZjHGfFv/coverage.png" width="600; max-width: 900px;"/>
 </p>
 
 ## Technologies Used
