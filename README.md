@@ -61,7 +61,7 @@ curl http://127.0.0.1:8080/jwks.json
 - JSON output includes key parameters: kty (key type), alg (algorithm), n (modulus), and e (exponent).
   
 <p align="center">
-  <img src="https://i.postimg.cc/y8wZn9ds/jkws-endpoint.png" width="800; max-width: 900px;"/>
+  <img src="https://i.postimg.cc/y8wZn9ds/jkws-endpoint.png" width="600; max-width: 900px;"/>
 </p>
 
 ### POST /auth
