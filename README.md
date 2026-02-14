@@ -30,41 +30,40 @@ This project:
 ```bash
 python -m venv venv
 venv\Scripts\activate
----
 ```
 
-Install dependencies:
-
+### Install dependencies:
 pip install fastapi uvicorn cryptography pyjwt pytest pytest-cov
-▶️ Running the Server
+
+### Running the Server
 Start the server:
-
+```bash
 python -m uvicorn main:app --reload --port 8080
+```
 Server will run at:
+```bash
 http://127.0.0.1:8080
+```
 
-🔑 Endpoints
-GET /jwks.json
+## Endpoints
+### GET /jwks.json
 Returns active public keys in JWKS format.
-
+```bash
 curl http://127.0.0.1:8080/jwks.json
+```
 (You can include a screenshot of the response here.)
 
-POST /auth
+### POST /auth
 Generates a signed JWT.
-
-Request body example:
-
-{
-  "sub": "testuser"
-}
+```bash
 curl -X POST -H "Content-Type: application/json" -d '{"sub":"testuser"}' http://127.0.0.1:8080/auth
+```
 (Include screenshot of token output.)
 
-POST /auth?expired=true
+### POST /auth?expired=true
 Generates a JWT signed with an expired key (for testing).
 
-🧪 Running Tests
+## Running Tests
 Run all tests:
 
 python -m pytest
@@ -83,24 +82,17 @@ htmlcov/index.html
 Current coverage: ~86%
 
 ⚙️ Technologies Used
-FastAPI
+-  FastAPI
+-  Uvicorn
+-  PyJWT
+-  Cryptography
+-  Pytest
+-  Pytest-Cov
 
-Uvicorn
-
-PyJWT
-
-Cryptography
-
-Pytest
-
-Pytest-Cov
-
-📌 Notes
-Expired keys are intentionally supported for testing.
-
-Active keys are returned in the JWKS endpoint.
-
-All keys are stored in memory (no database).
+## Notes
+-  Expired keys are intentionally supported for testing.
+-  Active keys are returned in the JWKS endpoint.
+-  All keys are stored in memory.
 
 
 
