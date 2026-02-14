@@ -31,6 +31,15 @@ This project:
 python -m venv venv
 venv\Scripts\activate
 ```
+1. Clone the repository:
+
+```bash
+https://github.com/mairesse24/JWKS-Server
+cd jwks-server
+
+or python -m venv venv
+venv\Scripts\activate
+```
 
 ### Install dependencies:
 pip install fastapi uvicorn cryptography pyjwt pytest pytest-cov
@@ -51,17 +60,28 @@ Returns active public keys in JWKS format.
 ```bash
 curl http://127.0.0.1:8080/jwks.json
 ```
-(You can include a screenshot of the response here.)
+- Only **unexpired keys** are included.  
+- Each key has a **unique `kid`** that clients use to verify JWTs.  
+- The JSON output includes key parameters like `kty` (key type), `alg` (algorithm), `n` (modulus), and `e` (exponent).
+  
+<p align="center">
+  <img src="https://image2url.com/r2/default/images/1771042679290-138360e1-17e3-4fa3-89aa-c0dc23ee6fdb.png" width="500"/>
+</p>
+
 
 ### POST /auth
 Generates a signed JWT.
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{"sub":"testuser"}' http://127.0.0.1:8080/auth
 ```
-(Include screenshot of token output.)
 
-### POST /auth?expired=true
-Generates a JWT signed with an expired key (for testing).
+- Demonstrates that the server can issue a signed JWT.  
+- The JWT includes a **header with `kid`**, so the client knows which key from the JWKS to use for verification.  
+- Using the `?expired=true` query parameter issues a JWT signed with an **expired key**, useful for testing key rotation behavior.
+
+<p align="center">
+  <img src="https://image2url.com/r2/default/images/1771042504646-a60baa20-1ae2-435a-9652-5a2bf1316014.png" width="500"/>
+</p>
 
 ## Running Tests
 Run all tests:
@@ -77,10 +97,14 @@ python -m pytest --cov=. --cov-report=html
 
 htmlcov/index.html
 ```
-(Include screenshot of coverage report if needed.)
 
 ## Coverage
-Current coverage: ~86%
+Confirms that **all tests pass**.
+Shows **coverage percentage** of **86%**  
+- Ensures that your server functions correctly and all endpoints behave as expected.
+<p align="center">
+  <img src="https://image2url.com/r2/default/images/1771041863827-a31a7fb9-ec9d-4d35-9d02-f34945a8cef7.png" width="500"/>
+</p>
 
 ## Technologies Used
 -  FastAPI
@@ -117,42 +141,10 @@ This project implements a **JWKS (JSON Web Key Set) server** that:
 - Gin Web Framework
 - Windows, macOS, or Linux terminal (PowerShell or bash)
 
-## Screenshots
-### 1. JWKS Endpoint
-This screenshot shows the JSON Web Key Set (JWKS) returned by the server at the endpoint:
-
-- Only **unexpired keys** are included.  
-- Each key has a **unique `kid`** that clients use to verify JWTs.  
-- The JSON output includes key parameters like `kty` (key type), `alg` (algorithm), `n` (modulus), and `e` (exponent).  
-
-![JWKS Endpoint](screenshots/jwks_endpoint.png)
 
 
-### 2. Auth Endpoint
-This screenshot shows the JWT returned by the `/auth` endpoint:
-
-- Demonstrates that the server can issue a signed JWT.  
-- The JWT includes a **header with `kid`**, so the client knows which key from the JWKS to use for verification.  
-- Using the `?expired=true` query parameter issues a JWT signed with an **expired key**, useful for testing key rotation behavior.  
-
-![Auth Endpoint](screenshots/auth_endpoint.png)
 
 
-### 3. Test Coverage
-This screenshot shows the results of running:
-- Confirms that **all tests pass**.  
-- Shows **coverage percentage** of your Go code (e.g., 77.4%).  
-- Ensures that your server functions correctly and all endpoints behave as expected.  
-
-![Test Coverage](JKWS Server/jwks/test coverage.png)
-
-## Installation / Setup
-
-1. Clone the repository:
-
-```bash
-https://github.com/mairesse24/JWKS-Server/blob/main/README.md
-cd jwks-server
 
 
 
