@@ -1,3 +1,36 @@
+# JWKS Server (FastAPI)
+
+A simple JSON Web Key Set (JWKS) server built with FastAPI.
+
+This project:
+- Generates RSA key pairs
+- Serves public keys via a JWKS endpoint
+- Issues signed JWTs
+- Supports expired key testing
+- Includes automated tests with coverage
+
+---
+
+## 🚀 Features
+
+- 🔐 RSA key generation
+- 🔁 Automatic key rotation (background thread)
+- 📦 JWKS endpoint (`/jwks.json`)
+- 🪪 JWT issuing endpoint (`/auth`)
+- 🧪 Pytest test suite
+- 📊 Code coverage reporting
+
+---
+
+
+
+
+
+
+
+
+------
+
 # JWKS Server Project
 
 ## Description
