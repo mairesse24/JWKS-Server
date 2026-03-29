@@ -113,8 +113,8 @@ python main.py
 
 ### Inspect database keys:
 ```bash
-python view_keys.py ```
-
+python view_keys.py
+```
 This ensures at least one expired and one valid key exists for testing.
 
 
