@@ -101,7 +101,7 @@ Gradebot test client shows ~96% coverage.
   <img src="https://i.postimg.cc/SNj8Fpcv/gradebot.png" width="600; max-width: 900px;"/>
 </p>
 
-Test Coverage shows 76% covered test suite
+Test coverage screenshot shows 76% coverage of the test suite:
 <p align="center">
   <img src="https://i.postimg.cc/7bv7mVq8/Screenshot-2026-03-29-152324.png" width="600; max-width: 900px;"/>
 </p>
