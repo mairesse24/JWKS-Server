@@ -105,7 +105,7 @@ Endpoints:
 ### Automated tests 
 gradebot coverage with  ~96% coverage
 <p align="center">
-  <img src="https://postimg.cc/SJFjC3T6" width="600; max-width: 900px;"/>
+  <img src="https://i.postimg.cc/SNj8Fpcv/gradebot.png" width="600; max-width: 900px;"/>
 </p>
 
 ### Run the server:
