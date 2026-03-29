@@ -1,6 +1,10 @@
 # JWKS Server Project
 
-A simple JSON Web Key Set (JWKS) server built with FastAPI.
+A JSON Web Key Set (JWKS) server demonstrating both in-memory key management and persistent database-backed key storage.
+
+This repository contains two versions of the JWKS server:
+Project 1 – FastAPI (In-Memory Keys)
+Project 2 – Flask + SQLite (Persistent Keys)
 
 This project:  
 - Generates RSA key pairs  
@@ -11,14 +15,12 @@ This project:
 
 
 ## Features
-
-- RSA key generation  
-- Automatic key rotation (background thread)  
-- JWKS endpoint (`/jwks.json`)  
-- JWT issuing endpoint (`/auth`)  
-- Pytest test suite  
-- Code coverage reporting  
-
+- RSA key generation
+- JWKS endpoint to serve public keys
+- JWT issuing endpoint with kid headers
+- Expired key support for testing key rotation
+- SQLite-backed key persistence (Project 2)
+- Automated tests with coverage reporting
 
 ## Installation
 
@@ -36,6 +38,15 @@ venv\Scripts\activate
 
 ### Install dependencies:
 pip install -r requirements.txt
+
+
+## Project 1 – FastAPI (In-Memory Keys)
+Keys are generated and stored in memory
+Endpoints:
+- GET /jwks.json – returns active keys
+- POST /auth – issues signed JWTs (add ?expired=true for expired key)
+- Automatic key rotation in a background thread
+- Pytest test suite with coverage (~86%)
 
 ### Running the Server
 Start the server:
@@ -76,6 +87,28 @@ curl -X POST -H "Content-Type: application/json" -d '{"sub":"testuser"}' http://
   <img src="https://i.postimg.cc/8zq6wW5V/auth-endpoint.png" width="600; max-width: 900px;"/>
 </p>
 
+## Coverage 
+- Confirms that all tests pass.
+- Shows coverage percentage **(~86%)**.
+- Ensures all endpoints function as expected.
+<p align="center">
+  <img src="https://i.postimg.cc/RZjHGfFv/coverage.png" width="600; max-width: 900px;"/>
+</p>
+
+## Project 2 – Flask + SQLite (Persistent Keys)
+- Keys are stored in a SQLite database (keys table)
+Endpoints:
+- GET /.well-known/jwks.json – returns active keys from DB
+- POST /auth – issues signed JWTs using DB keys
+- Supports expired keys for testing
+- Automated tests with ~96% coverage
+
+### Run the server:
+``` python main.py ```
+
+### Inspect database keys:
+```python view_keys.py ```
+
 
 ## Running Tests
 Run all tests:
@@ -94,14 +127,6 @@ The HTML report will be generated in:
 ```bash
 htmlcov/index.html
 ```
-
-## Coverage
-- Confirms that all tests pass.
-- Shows coverage percentage **(~86%)**.
-- Ensures all endpoints function as expected.
-<p align="center">
-  <img src="https://i.postimg.cc/RZjHGfFv/coverage.png" width="600; max-width: 900px;"/>
-</p>
 
 ## Technologies Used
 -  FastAPI
