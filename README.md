@@ -101,7 +101,12 @@ Endpoints:
 - GET /.well-known/jwks.json – returns active keys from DB
 - POST /auth – issues signed JWTs using DB keys
 - Supports expired keys for testing
-- Automated tests with ~96% coverage
+
+### Automated tests 
+gradebot coverage with  ~96% coverage
+<p align="center">
+  <img src="https://postimg.cc/SJFjC3T6" width="600; max-width: 900px;"/>
+</p>
 
 ### Run the server:
 ``` python main.py ```
@@ -128,13 +133,25 @@ The HTML report will be generated in:
 htmlcov/index.html
 ```
 
+## | Feature             | Project 1 (FastAPI) | Project 2 (Flask + SQLite) |
+| ------------------- | ------------------- | -------------------------- |
+| Key Storage         | In-memory           | SQLite DB                  |
+| Key Persistence     | No                  | Yes                        |
+| Framework           | FastAPI             | Flask                      |
+| JWT Issuing         | Yes                 | Yes                        |
+| Expired Key Support | Yes                 | Yes                        |
+| Tests & Coverage    | ~86%                | ~96%                       |
+| Database Queries    | N/A                 | Parameterized, secure      |
+
+
 ## Technologies Used
--  FastAPI
+-  FastAPI (Project 1)
+-  Flask (Project 2)
 -  Uvicorn
 -  PyJWT
 -  Cryptography
--  Pytest
--  Pytest-Cov
+-  SQLite (Project 2)
+-  Pytest, Pytest-Cov
 
 ## Notes
 -  Expired keys are intentionally supported for testing.
