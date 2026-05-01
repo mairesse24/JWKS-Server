@@ -65,6 +65,7 @@ source venv/bin/activate  # macOS/Linux
 ### Install dependencies:
 pip install -r requirements.txt
 
+---
 
 ## Project 1 – FastAPI (In-Memory Keys)
 Keys are generated and stored in memory
@@ -109,6 +110,7 @@ curl -X POST http://127.0.0.1:8080/auth?expired=true
 <p align="center">
   <img src="https://i.postimg.cc/RZjHGfFv/coverage.png" width="600; max-width: 900px;"/>
 </p>
+---
 
 ## Project 2 – Flask + SQLite (Persistent Keys)
 Keys are stored in a SQLite database (`totally_not_my_privateKeys.db`)  
@@ -137,6 +139,7 @@ Test coverage screenshot shows 76% coverage of the test suite:
 <p align="center">
   <img src="https://i.postimg.cc/7bv7mVq8/Screenshot-2026-03-29-152324.png" width="600; max-width: 900px;"/>
 </p>
+---
 
 ## Security Improvements (Project 3)
 Private keys are never stored in plaintext
@@ -170,6 +173,7 @@ Invoke-RestMethod -Method POST `
   -ContentType "application/json" `
   -Body '{"username":"test","email":"test@test.com"}'
 ```
+---
 
 ## Running Tests
 Run all tests:
@@ -202,18 +206,6 @@ htmlcov/index.html
 
 
 ## Feature Comparison
-
-| Feature                  | Project 1 (FastAPI) | Project 2 (Flask + SQLite) |
-| ------------------------ | ----------------- | -------------------------- |
-| Key Storage               | In-memory         | SQLite DB                  |
-| Key Persistence           | No                | Yes                        |
-| Framework                 | FastAPI           | Flask                      |
-| JWT Issuing               | Yes               | Yes                        |
-| Expired Key Support       | Yes               | Yes                        |
-| Tests & Coverage          | ~86%              | ~96%                       |
-| Database Queries          | N/A               | Parameterized, secure      |
-
----
 
 | Feature              | Project 1 (FastAPI) | Project 2 (Flask + SQLite) | Project 3 (Secure SQLite) |
 | -------------------- | ------------------- | -------------------------- | ------------------------- |
