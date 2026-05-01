@@ -27,20 +27,26 @@ This repository contains two versions of the JWKS server:
 - Test coverage: ~74%–
 
 ## Features  
+### Core Features (All Projects)
 - RSA key pair generation
 - JWKS endpoint to serve active public keys
 - JWT issuing endpoint with kid headers
 - Support for expired keys for testing key rotation
-- SQLite-backed key persistence (Project 2)
 - Automated tests with coverage reporting
-### Features (Security Upgrade – Project 3)
-- AES-256 encryption of private keys
+### Project 2 (SQLite Persistence)
+- SQLite-backed key storage
+- Parameterized queries to prevent SQL injection
+- Persistent user and key data
+- Database-backed authentication logging
+### Project 3 (Security Enhancements)
+- AES-256 encryption of private RSA keys before database storage
 - Secure IV generation per key
-- Base64-safe storage encoding
-- RS256 signing
-- Auth logging with user tracking
-- Rate limiting on /auth
-- Graceful failure handling
+- Base64-safe encoding for database compatibility
+- RS256 (RSA SHA-256) JWT signing
+- Authentication request logging with user tracking
+- Rate limiting on /auth endpoint
+- Graceful handling of corrupted or invalid keys
+- Environment-based encryption key (NOT_MY_KEY)
 
 ## Installation
 1. Clone the repository:
@@ -142,7 +148,7 @@ Prevents database leakage from exposing usable private keys
 Skips malformed keys instead of crashing server/tests
 
 ### Coverage report 
-Gradebot test client shows ~74% coverage.
+Gradebot test client shows ~73.64% coverage.
 <p align="center">
   <img src="https://i.postimg.cc/FRp7QsJz/Screenshot-2026-05-01-105226.png" width="600; max-width: 900px;"/>
 </p>
@@ -185,13 +191,15 @@ htmlcov/index.html
 
 
 ## Technologies Used
--  FastAPI (Project 1)
--  Flask (Project 2)
--  Uvicorn
--  PyJWT
--  Cryptography
--  SQLite (Project 2)
--  Pytest, Pytest-Cov
+- FastAPI (Project 1)
+- Flask (Project 2 & 3)
+- SQLite
+- PyJWT
+- Cryptography (AES + RSA)
+- Uvicorn
+- Pytest, Pytest-Cov
+- Argon2 (password hashing)
+
 
 ## Feature Comparison
 
@@ -207,11 +215,25 @@ htmlcov/index.html
 
 ---
 
+| Feature              | Project 1 (FastAPI) | Project 2 (Flask + SQLite) | Project 3 (Secure SQLite) |
+| -------------------- | ------------------- | -------------------------- | ------------------------- |
+| Key Storage          | In-memory           | SQLite DB                  | SQLite DB                 |
+| Key Persistence      | No                  | Yes                        | Yes                       |
+| Private Key Security | None                | None                       | AES-256 encrypted         |
+| Framework            | FastAPI             | Flask                      | Flask                     |
+| JWT Issuing          | Yes                 | Yes                        | Yes                       |
+| Signing Algorithm    | RS256               | RS256                      | RS256                     |
+| Expired Key Support  | Yes                 | Yes                        | Yes                       |
+| Auth Logging         | No                  | Yes                        | Yes                       |
+| Rate Limiting        | No                  | Basic                      | Yes                       |
+| Tests & Coverage     | ~86%                | ~96%                       | ~74%                      |
+| Database Queries     | N/A                 | Parameterized, secure      | Parameterized, secure     |
+---
+
 ## Notes
--  Expired keys are intentionally supported for testing.
--  Active keys are returned in the JWKS endpoint.- 
-- All keys are stored in memory (Project 1) or in SQLite DB (Project 2).
-- Private RSA keys are encrypted using AES-256 before being stored in SQLite
-- Keys are safely decrypted only during runtime signing operations
-- Invalid or corrupted keys are skipped to maintain service stability
-- Environment variable NOT_MY_KEY is required for encryption/decryption
+- Expired keys are intentionally supported for testing
+- Active keys are returned in the JWKS endpoint
+- Private keys are encrypted using AES-256 before being stored in SQLite
+- Keys are decrypted only at runtime for signing operations
+- Corrupted keys are skipped to maintain service stability
+- NOT_MY_KEY environment variable is required for encryption/decryption
