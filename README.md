@@ -110,6 +110,7 @@ curl -X POST http://127.0.0.1:8080/auth?expired=true
 <p align="center">
   <img src="https://i.postimg.cc/RZjHGfFv/coverage.png" width="600; max-width: 900px;"/>
 </p>
+
 ---
 
 ## Project 2 – Flask + SQLite (Persistent Keys)
@@ -139,6 +140,7 @@ Test coverage screenshot shows 76% coverage of the test suite:
 <p align="center">
   <img src="https://i.postimg.cc/7bv7mVq8/Screenshot-2026-03-29-152324.png" width="600; max-width: 900px;"/>
 </p>
+
 ---
 
 ## Security Improvements (Project 3)
@@ -151,7 +153,7 @@ Prevents database leakage from exposing usable private keys
 Skips malformed keys instead of crashing server/tests
 
 ### Coverage report 
-Gradebot test client shows ~73.64% coverage.
+Gradebot test client shows ~74% coverage.
 <p align="center">
   <img src="https://i.postimg.cc/FRp7QsJz/Screenshot-2026-05-01-105226.png" width="600; max-width: 900px;"/>
 </p>
