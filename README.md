@@ -16,6 +16,16 @@ This repository contains two versions of the JWKS server:
 - Directory: [jwks_db_server](./jwks_db_server)
 - Test coverage: ~96%
 
+## Project 3: Secure JWKS Server (Encrypted SQLite + Hardened Auth System)
+- Extends Project 2 by adding AES-encrypted RSA private key storage
+- Implements secure key encryption using AES-256 (CFB mode)
+- Adds robust JWT authentication with key rotation support
+- Improves database integrity and logging consistency
+- Fixes edge cases in key loading by safely handling corrupted keys
+- Maintains SQLite persistence with improved security model
+- Directory: [jwks_auth_service](./jwks_auth_service)
+- Test coverage: ~74%–
+
 ## Features  
 - RSA key pair generation
 - JWKS endpoint to serve active public keys
@@ -23,11 +33,17 @@ This repository contains two versions of the JWKS server:
 - Support for expired keys for testing key rotation
 - SQLite-backed key persistence (Project 2)
 - Automated tests with coverage reporting
+### Features (Security Upgrade – Project 3)
+- AES-256 encryption of private keys
+- Secure IV generation per key
+- Base64-safe storage encoding
+- RS256 signing
+- Auth logging with user tracking
+- Rate limiting on /auth
+- Graceful failure handling
 
 ## Installation
-
 1. Clone the repository:
-
 ```bash
 git clone https://github.com/mairesse24/JWKS-Server
 cd jwks
@@ -95,6 +111,16 @@ Endpoints:
 - POST /auth – issues signed JWTs using DB keys
 - Supports expired keys for testing
 
+### Run the server:
+```bash
+python main.py
+```
+### Inspect database keys:
+```bash
+python view_keys.py
+```
+This ensures at least one expired and one valid key exists for testing.
+
 ### Automated tests 
 Gradebot test client shows ~96% coverage.
 <p align="center">
@@ -106,17 +132,46 @@ Test coverage screenshot shows 76% coverage of the test suite:
   <img src="https://i.postimg.cc/7bv7mVq8/Screenshot-2026-03-29-152324.png" width="600; max-width: 900px;"/>
 </p>
 
+## Security Improvements (Project 3)
+Private keys are never stored in plaintext
+Encryption keys sourced from environment variable:
+```bash
+NOT_MY_KEY
+```
+Prevents database leakage from exposing usable private keys
+Skips malformed keys instead of crashing server/tests
+
+### Coverage report 
+Gradebot test client shows ~74% coverage.
+<p align="center">
+  <img src="https://i.postimg.cc/FRp7QsJz/Screenshot-2026-05-01-105226.png" width="600; max-width: 900px;"/>
+</p>
+
+Test coverage screenshot shows 74% coverage of the test suite:
+<p align="center">
+  <img src="https://i.postimg.cc/SNBQ3zt2/Screenshot-2026-05-01-110332.png" width="600; max-width: 900px;"/>
+</p>
+
+
 ### Run the server:
 ```bash
 python main.py
 ```
-
-### Inspect database keys:
+### Get JWKS keys
 ```bash
-python view_keys.py
+curl http://127.0.0.1:8080/.well-known/jwks.json
 ```
-This ensures at least one expired and one valid key exists for testing.
-
+### Issue JWT
+```bash
+curl -X POST http://127.0.0.1:8080/auth
+```
+### Register user
+```bash
+Invoke-RestMethod -Method POST `
+  -Uri "http://127.0.0.1:8080/register" `
+  -ContentType "application/json" `
+  -Body '{"username":"test","email":"test@test.com"}'
+```
 
 ## Running Tests
 Run all tests:
@@ -164,3 +219,7 @@ htmlcov/index.html
 -  Expired keys are intentionally supported for testing.
 -  Active keys are returned in the JWKS endpoint.- 
 - All keys are stored in memory (Project 1) or in SQLite DB (Project 2).
+- Private RSA keys are encrypted using AES-256 before being stored in SQLite
+- Keys are safely decrypted only during runtime signing operations
+- Invalid or corrupted keys are skipped to maintain service stability
+- Environment variable NOT_MY_KEY is required for encryption/decryption
