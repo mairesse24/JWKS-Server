@@ -26,7 +26,7 @@ This repository contains three versions of the JWKS server:
 - Fixes edge cases in key loading by safely handling corrupted keys
 - Maintains SQLite persistence with improved security model
 - Directory: [jwks_auth_service](./jwks_auth_service)
-- Test coverage: ~74%–
+- Test coverage: ~74%
 
 ## Features  
 ### Core Features (All Projects)
