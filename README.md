@@ -157,14 +157,6 @@ Test coverage screenshot shows 74% coverage of the test suite:
 ```bash
 python main.py
 ```
-### Get JWKS keys
-```bash
-curl http://127.0.0.1:8080/.well-known/jwks.json
-```
-### Issue JWT
-```bash
-curl -X POST http://127.0.0.1:8080/auth
-```
 ### Register user
 ```bash
 Invoke-RestMethod -Method POST `
