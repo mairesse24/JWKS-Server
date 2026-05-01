@@ -154,18 +154,6 @@ NOT_MY_KEY
 Prevents database leakage from exposing usable private keys
 Skips malformed keys instead of crashing server/tests
 
-### Coverage report 
-Gradebot test client shows ~74% coverage.
-<p align="center">
-  <img src="https://i.postimg.cc/FRp7QsJz/Screenshot-2026-05-01-105226.png" width="600; max-width: 900px;"/>
-</p>
-
-Test coverage screenshot shows 74% coverage of the test suite:
-<p align="center">
-  <img src="https://i.postimg.cc/SNBQ3zt2/Screenshot-2026-05-01-110332.png" width="600; max-width: 900px;"/>
-</p>
-
-
 ### Run the server:
 ```bash
 python main.py
@@ -177,6 +165,18 @@ Invoke-RestMethod -Method POST `
   -ContentType "application/json" `
   -Body '{"username":"test","email":"test@test.com"}'
 ```
+
+### Coverage report 
+Gradebot test client shows ~74% coverage.
+<p align="center">
+  <img src="https://i.postimg.cc/FRp7QsJz/Screenshot-2026-05-01-105226.png" width="600; max-width: 900px;"/>
+</p>
+
+Test coverage screenshot shows 74% coverage of the test suite:
+<p align="center">
+  <img src="https://i.postimg.cc/SNBQ3zt2/Screenshot-2026-05-01-110332.png" width="600; max-width: 900px;"/>
+</p>
+
 ---
 
 ## Running Tests
